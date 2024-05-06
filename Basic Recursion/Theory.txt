@@ -1,0 +1,2 @@
+Recursion : 
+            When a Function calls itself until a specified condition is met.
