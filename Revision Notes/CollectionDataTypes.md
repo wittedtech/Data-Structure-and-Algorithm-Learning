@@ -18,3 +18,77 @@
 | ConcurrentHashMap | Map        | Thread-safe hash map | Concurrent access | Insertion/Deletion: O(1), Access: O(1) | O(n) | `Map<KeyType, ValueType> map = new ConcurrentHashMap<>();` | High-concurrency scenarios requiring thread safety | Yes | No | Yes | put(), remove(), get(), containsKey(), size(), etc. |
 | Hashtable       | Map            | Hash table implementation | Legacy, thread-safe | Insertion/Deletion: O(1), Access: O(1) | O(n) | `Hashtable<KeyType, ValueType> table = new Hashtable<>();` | Legacy code, thread-safe mapping of keys to values | Yes | No | Yes | put(), remove(), get(), containsKey(), size(), etc. |
 | Properties      | Map            | Key-value pairs | Configuration data | Insertion/Deletion: O(1), Access: O(1) | O(n) | `Properties props = new Properties();` | Handling configuration data | Yes | No | Yes | getProperty(), setProperty(), load(), store(), etc. |
+
+
+
+
+# HashMap vs HashTable:
+
+| Criteria      | HashMap                                | HashTable                              |
+|---------------|----------------------------------------|----------------------------------------|
+| Thread Safety | Not synchronized, not thread-safe      | Synchronized, thread-safe              |
+| Null Values   | Allows null key and values             | Does not allow null keys or values     |
+| Performance   | Generally faster due to lack of synchronization overhead | Slower due to synchronization overhead|
+| Iteration     | Fail-fast iterator                     | Enumerator (legacy)                    |
+| Inheritance   | Inherits from AbstractMap              | Inherits from Dictionary              |
+
+# ArrayList vs LinkedList:
+
+| Criteria       | ArrayList                              | LinkedList                             |
+|----------------|----------------------------------------|----------------------------------------|
+| Data Structure | Resizable array                        | Doubly linked list                     |
+| Random Access  | Efficient (O(1))                      | Less efficient (O(n))                  |
+| Insertion/Deletion | Slower for large lists (O(n))      | Faster for large lists (O(1))          |
+| Memory Usage   | Less memory overhead                  | More memory overhead                   |
+| Iteration      | Faster for sequential access          | Faster for sequential and random access|
+
+
+# HashSet vs TreeSet:
+
+| Criteria      | HashSet                                | TreeSet                                |
+|---------------|----------------------------------------|----------------------------------------|
+| Implementation| Uses HashMap internally                | Uses Red-Black tree internally         |
+| Ordering      | Unordered                              | Sorted according to natural ordering or custom comparator |
+| Performance   | Generally faster (O(1) for insertion, deletion, and lookup) | Slower due to ordering overhead (O(log n) for insertion, deletion, and lookup) |
+| Null Values   | Allows one null value                 | Does not allow null values             |
+| Use Case      | Suitable for general-purpose use cases| Suitable when elements need to be maintained in sorted order |
+
+
+# Stack vs Queue:
+
+| Criteria       | Stack                                  | Queue                                  |
+|----------------|----------------------------------------|----------------------------------------|
+| Data Structure | LIFO (Last In, First Out)              | FIFO (First In, First Out)             |
+| Operations     | push(), pop(), peek()                 | enqueue(), dequeue(), peek()          |
+| Implementation| Can be implemented using arrays or linked lists | Can be implemented using arrays or linked lists |
+| Use Cases      | Used in algorithms, backtracking, expression evaluation, etc. | Used in scheduling, task management, breadth-first search, etc. |
+
+
+# PriorityQueue vs TreeMap:
+
+| Criteria       | PriorityQueue                         | TreeMap                                |
+|----------------|----------------------------------------|----------------------------------------|
+| Data Structure | Heap                                   | Red-Black tree                         |
+| Ordering       | Orders elements based on their natural order or a custom comparator | Orders elements based on their natural order or a custom comparator |
+| Operations     | Offer(), Poll(), Peek()                | Put(), Remove(), FirstKey()           |
+| Use Cases      | Used in algorithms like Dijkstra's shortest path, Huffman coding, etc. | Used when you need to maintain a key-value mapping in sorted order |
+
+
+# HashSet vs LinkedHashSet:
+
+| Criteria       | HashSet                                | LinkedHashSet                          |
+|----------------|----------------------------------------|----------------------------------------|
+| Ordering       | Unordered                              | Maintains insertion order              |
+| Implementation| Uses HashMap internally                | Uses LinkedHashMap internally          |
+| Performance   | Faster (O(1) for insertion, deletion, and lookup) | Slightly slower due to maintaining insertion order |
+| Use Cases      | General-purpose usage where order is not important | When you need to maintain insertion order while still having O(1) performance |
+
+
+# HashMap vs LinkedHashMap:
+
+| Criteria       | HashMap                                | LinkedHashMap                          |
+|----------------|----------------------------------------|----------------------------------------|
+| Ordering       | Unordered                              | Maintains insertion order              |
+| Implementation| Uses array of linked lists (buckets) internally | Extends HashMap and uses a doubly linked list to maintain insertion order |
+| Performance   | Generally faster                       | Slightly slower due to maintaining insertion order |
+| Use Cases      | General-purpose usage where order is not important | When you need to maintain insertion order |
