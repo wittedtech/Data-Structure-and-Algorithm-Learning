@@ -1,4 +1,23 @@
-# Map Interface:
+# Map Interface
+
+The `Map` interface in Java represents a collection of key-value pairs. It defines methods to manipulate elements based on their keys. Key characteristics of the `Map` interface include:
+
+- **Definition**: Represents an object that maps keys to values, where each key is unique and can be associated with at most one value.
+  
+- **Implementation**: Implemented by various classes in Java, such as `HashMap`, `TreeMap`, `LinkedHashMap`, etc.
+
+- **Key**: Each key in a `Map` must be unique and is used to retrieve associated values.
+
+- **Value**: Values in a `Map` can be duplicate and can be associated with multiple keys.
+
+- **Methods**: Includes methods like `put(key, value)`, `get(key)`, `remove(key)`, `containsKey(key)`, etc.
+
+- **Iteration**: Provides methods to iterate over its elements, such as `keySet()`, `values()`, and `entrySet()`.
+
+- **Null Values**: Maps can contain null values, but only one null key.
+
+- **Use Cases**: Commonly used for tasks such as caching, data storage, lookup tables, and handling key-value pairs of configuration settings.
+
 
 
 ## SortedMap :
@@ -278,3 +297,40 @@
 |                       | int value = map.get("key");                                   | int value = table.get("key");                                                                      |
 |                       | ```                                                           | ```                                                                                                 |
 
+## Comparison of Maps Implementing Map Interface in Java
+
+| Map Implementation   | Description                                                                                                                                                            | Thread Safety          | Synchronization       | Time Complexity       | Space Complexity      | Internal Working                     | Use Cases                                     |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|------------------------|------------------------|------------------------|-------------------------------------|-----------------------------------------------|
+| HashMap              | Stores key-value pairs using a hash table. Provides fast retrieval, insertion, and deletion operations.                                                               | Not thread-safe        | Not synchronized      | O(1) (average case)   | O(n)                   | Hash table                          | General-purpose use, where thread safety isn't required |
+| LinkedHashMap        | Similar to HashMap but maintains insertion order of keys. Allows predictable iteration order.                                                                         | Not thread-safe        | Not synchronized      | O(1) (average case)   | O(n)                   | Hash table + Doubly linked list     | Use cases where maintaining insertion order is required |
+| TreeMap              | Stores key-value pairs in sorted order based on the natural ordering of keys or a custom comparator.                                                                  | Not thread-safe        | Not synchronized      | O(log n)               | O(n)                   | Red-Black Tree                      | Applications requiring sorted key-value pairs        |
+| WeakHashMap          | Similar to HashMap but allows garbage collection of keys that are not reachable from any thread.                                                                      | Not thread-safe        | Not synchronized      | O(1) (average case)   | O(n)                   | Hash table                          | Cache or mapping with potentially short-lived keys   |
+| IdentityHashMap      | Implements Map with reference-equality in place of object-equality when comparing keys (== rather than equals()).                                                      | Not thread-safe        | Not synchronized      | O(1) (average case)   | O(n)                   | Array-based                          | Use cases requiring reference-equality semantics     |
+| EnumMap              | Implements Map for use with enum keys. Provides efficient storage and retrieval of enum constant keys.                                                                 | Not thread-safe        | Not synchronized      | O(1) (average case)   | O(n)                   | Array-based                          | Use cases specifically involving enum keys           |
+| Hashtable            | Deprecated since Java 1.2. Similar to HashMap but synchronized, providing thread-safe access to its methods.                                                           | Thread-safe            | Synchronized           | O(1) (average case)   | O(n)                   | Hash table                          | Legacy applications requiring thread-safe maps        |
+| Properties           | Represents a persistent set of properties, typically used for handling configuration settings or application properties.                                               | Thread-safe            | Synchronized           | Depends on operations  | Depends on operations  | Hash table                          | Managing configuration settings                     |
+
+
+
+# Important Methods:
+
+## FlatMap
+
+| Topic                  | Description                                                                                                                                                                                            |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Definition             | `flatMap()` is a method in Java streams that applies a mapping function to each element of a stream and then flattens the results into a single stream.                                               |
+| Time Complexity       | Depends on the operations performed within the `flatMap()` function and the size of the input stream.                                                                                                |
+| Space Complexity      | Depends on the size of the input stream and the number of elements produced by the mapping function.                                                                                                  |
+| Internal Working      | The `flatMap()` method first applies the mapping function to each element of the stream, producing a stream of streams. It then flattens these streams into a single stream by concatenating them. |
+| Enterprise Use        | Commonly used for transforming and flattening nested collections or arrays of data, such as lists of lists or arrays of arrays.                                                                     |
+| Iterable              | Yes, the output of `flatMap()` is iterable.                                                                                                                                                           |
+| Syntax                | ```java
+                          Stream<T> flatMappedStream = stream.flatMap(mappingFunction);
+                        ```                                                                                                                                                                                  |
+| Example               | ```java
+                          List<List<Integer>> nestedList = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4), Arrays.asList(5, 6));
+                          Stream<Integer> flatStream = nestedList.stream().flatMap(Collection::stream);
+                          flatStream.forEach(System.out::println); // Output: 1, 2, 3, 4, 5, 6
+                        ```                                                                                                                                                                                  |
+| Pros                  | - Simplifies the process of flattening nested collections or arrays into a single stream. <br> - Allows for concise and readable code when working with complex data structures.                      |
+| Cons                  | - May result in increased memory usage if the size of the input stream or the number of elements produced by the mapping function is large. <br> - Requires understanding of functional programming concepts. |
