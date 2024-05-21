@@ -334,3 +334,69 @@ The `Map` interface in Java represents a collection of key-value pairs. It defin
                         ```                                                                                                                                                                                  |
 | Pros                  | - Simplifies the process of flattening nested collections or arrays into a single stream. <br> - Allows for concise and readable code when working with complex data structures.                      |
 | Cons                  | - May result in increased memory usage if the size of the input stream or the number of elements produced by the mapping function is large. <br> - Requires understanding of functional programming concepts. |
+
+
+
+## Hashing:
+- `HashMap` uses hashing to store elements
+- `Hashing` is the process to convert larger arbitrary values into small fixed size values.
+  In Most of the cases it uses Integer Value for HashCode but sometime for `String` & `Objects` it uses different methods to convert keys and Values into hashcode.
+  EXAMPLE :
+  1. For String :
+  ```
+  Key : Hello World!
+  Algorithm : any smaller prime number(for example here we take :--  31+binary value of character present in string).
+  ```
+
+  ```java
+  public class HashCodeExample {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        int hash = generateHashCode(str);
+        System.out.println("Hash code is: " + hash);
+    }
+
+    public static int generateHashCode(String str) {
+        int hash = 0;
+        for (int i = 0; i < str.length(); i++) {
+            hash = 31 * hash + str.charAt(i);
+        }
+        return hash;
+    }
+  ```
+  2. For Objects :
+  ```text
+  the hashCode() method is overridden to generate a hash code for the object based on the id and name fields. The Objects.hash() method is used to generate a hash code for an array of objects. The equals() method is also overridden to ensure that two objects are considered equal if they have the same id and name.
+
+  Note that it's important to override both hashCode() and equals() methods when working with custom objects in Java, especially when using them in hash-based collections like HashMap or HashSet.
+  ```
+  ```java
+  import java.util.Objects;
+
+  public class MyClass {
+      private int id;
+      private String name;
+
+      public MyClass(int id, String name) {
+          this.id = id;
+          this.name = name;
+      }
+
+      @Override
+      public int hashCode() {
+          return Objects.hash(id, name);
+      }
+
+      @Override
+      public boolean equals(Object obj) {
+          if (this == obj) {
+              return true;
+          }
+          if (!(obj instanceof MyClass)) {
+              return false;
+          }
+          MyClass other = (MyClass) obj;
+          return id == other.id && Objects.equals(name, other.name);
+      }
+  }
+  ```
