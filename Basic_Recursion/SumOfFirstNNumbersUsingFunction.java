@@ -1,4 +1,4 @@
-package Basic_Recursion;
+
 import java.util.Scanner;
 
 // Using Functional Recursion i.e. Operation are getting performed and dependent on function structure.
