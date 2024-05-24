@@ -46,7 +46,6 @@ public class BuildArrayOfPermutation {
     public static void main(String args[]){
         int [] arr = {0,2,1,5,3,4};
         BuildArrayOfPermutation obj = new BuildArrayOfPermutation();
-        int [] ans = obj.buildArray(arr);
         for(int i=0; i<obj.buildArray(arr).length; i++){
             System.out.print(obj.buildArray(arr)[i]+" ");
         }
