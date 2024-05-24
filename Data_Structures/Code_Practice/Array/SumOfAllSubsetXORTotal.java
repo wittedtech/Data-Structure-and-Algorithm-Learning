@@ -1,4 +1,8 @@
 package Data_Structures.Code_Practice.Array;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*1863. Sum of All Subset XOR Totals
 Hint
 The XOR total of an array is defined as the bitwise XOR of all its elements, or 0 if the array is empty.
@@ -49,8 +53,33 @@ Constraints:
 1 <= nums[i] <= 20 */
 public class SumOfAllSubsetXORTotal {
     int subsetXORSum(int [] nums){
+        List<List<Integer>> subsetArrayList = new ArrayList<>();
+        subsetArrays(nums,new ArrayList<>(), 0,subsetArrayList);
         int res =0;
-        
+        for(List<Integer> subset: subsetArrayList){
+            int XORSum = 0;
+            for(int num: subset){
+                XORSum ^= num;
+            }
+            res += XORSum;
+        }
         return res;
+    }
+
+    private static void subsetArrays(int [] mainArray, List<Integer> subset, int i,List<List<Integer>> subsets){
+        if(i == mainArray.length){
+            subsets.add(new ArrayList<>(subset));
+            return;
+        }
+        subset.add(mainArray[i]);
+        subsetArrays(mainArray, subset, i+1,subsets);
+        subset.remove(subset.size()-1);
+        subsetArrays(mainArray, subset, i+1,subsets);
+    }
+
+    public static void main(String[] args) {
+        SumOfAllSubsetXORTotal obj = new SumOfAllSubsetXORTotal();
+        int [] nums = {1,2};
+        System.out.println(obj.subsetXORSum(nums));
     }
 }
