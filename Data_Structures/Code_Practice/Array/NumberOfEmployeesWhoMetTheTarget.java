@@ -38,6 +38,20 @@ Constraints:
 0 <= hours[i], target <= 105 */
 
 public class NumberOfEmployeesWhoMetTheTarget {
+    public int numberOfEmployeesWhoMetTarget(int [] hours, int target){
+        int count = 0;
+        for(int i=0; i<hours.length; i++){
+            if(hours[i] >= target){
+                count++;
+            }
+        }
+        return count;
+    }
 
-    
+    public static void main(String[] args) {
+        NumberOfEmployeesWhoMetTheTarget obj = new NumberOfEmployeesWhoMetTheTarget();
+        int [] hours = {5,1,4,2,2};
+        int target = 6;
+        System.out.println(obj.numberOfEmployeesWhoMetTarget(hours,target));
+    }
 }
