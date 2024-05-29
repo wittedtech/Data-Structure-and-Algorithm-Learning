@@ -35,11 +35,42 @@ Constraints:
 3 <= nums.length <= 3000
 -105 <= nums[i] <= 105 */
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
-        
-        return null;
+        List<List<Integer>> res = new ArrayList<>();
+        int length = nums.length;
+        Arrays.sort(nums);
+        if(length<3) return res;
+        for(int i=0; i<length; i++){
+            if(i>0 && nums[i] == nums[i-1]) continue;
+            int left = i+1;
+            int right = length-1;
+            while (left<right){
+                int sum= nums[i]+nums[left]+nums[right];
+                if(sum == 0){ 
+                res.add(Arrays.asList(nums[i],nums[left], nums[right]));
+
+                while(left<right && nums[left] == nums[left+1]) left++;
+                while(left<right && nums[right] == nums[right-1]) right --;
+
+                left++;
+                right--;
+                }else if(sum<0){
+                    left ++;
+                }else{
+                    right --;
+                }
+            }
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        ThreeSum threeSum = new ThreeSum();
+        int [] nums = {-1,0,1,2,-1,-4};
+        System.out.println(threeSum.threeSum(nums));
     }
 }
