@@ -36,20 +36,24 @@ import java.util.Arrays;
 
 public class FindFirstAndLastPositionOfElementInSortedArray {
     public int[] searchRange(int[] nums, int target) {
-        int [] temp = new int [nums.length];
-        Arrays.fill(temp,-1);
-        int index =0;
+        if(nums.length == 0){
+            return new int [] {-1, -1};
+        }
+        int [] res = new int [2];
         for(int i=0; i<nums.length; i++){
             if(nums[i] == target){
-                temp[index] = i;
-                index++;
+                res[0] = i;
+                break;
+            }else{
+                res[0] = -1;
             }
         }
-        int [] res = new int[2];
-        res[0] = temp[0];
-        for(int i =1; i<temp.length; i++){
-            if(temp[i] == -1){
-                res[1] = temp[i-1];
+        for(int i=nums.length-1; i>=0; i--){
+            if(nums[i] == target){
+                res[1] = i;
+                break;
+            }else{
+                res[1] = -1;
             }
         }
         return res;
@@ -57,8 +61,8 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 
     public static void main(String[] args) {
         FindFirstAndLastPositionOfElementInSortedArray obj = new FindFirstAndLastPositionOfElementInSortedArray();
-        int [] nums = {5,7,7,8,8,10};
-        int [] res = obj.searchRange(nums, 8);
+        int [] nums = {1};
+        int [] res = obj.searchRange(nums, 0);
         for(int i=0; i<res.length; i++){
             System.out.print(res[i] + " ");
         }
