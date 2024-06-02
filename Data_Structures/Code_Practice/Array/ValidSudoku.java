@@ -53,5 +53,11 @@ board[i][j] is a digit 1-9 or '.'.
 */
 
 public class ValidSudoku {
-    
+    public boolean isValidSudoku(char[][] board) {
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[i].length; j++){
+                
+            }
+        }
+    }
 }
