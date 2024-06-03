@@ -1,4 +1,4 @@
-package Data_Structures.Code_Practice.Array.Contest_Leetcode.Weekly_400;
+package Data_Structures.Code_Practice.Contest_Leetcode.Weekly_400;
 /* 
 3168. Minimum Number of Chairs in a Waiting Room
 Easy

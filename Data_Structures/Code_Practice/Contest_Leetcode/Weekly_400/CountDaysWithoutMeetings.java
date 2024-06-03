@@ -1,4 +1,4 @@
-package Data_Structures.Code_Practice.Array.Contest_Leetcode.Weekly_400;
+package Data_Structures.Code_Practice.Contest_Leetcode.Weekly_400;
 
 /* 
 3169. Count Days Without Meetings
