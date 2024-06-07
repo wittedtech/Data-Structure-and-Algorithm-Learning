@@ -90,39 +90,47 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
  */
 public class StringToInteger {
     public int myAtoi(String s) {
-        final int n = s.length();
-        if(n == 0) return 0;
-
-        int i = 0;
-        while(i<n && s.charAt(i)==' '){
-            ++i;
-        }
-        boolean isNegative = false;
-        if(i<n ){
-            if(s.charAt(i) == '-'){
-                isNegative = true;
-                ++i;
-            }else if(s.charAt(i)=='+'){
-                ++i;
+        if (s == null || s.length() == 0) {
+            return 0;
             }
-        }
-        int res=0;
-        while(i<n && (s.charAt(i)>='0' && s.charAt(i)<='9')){
-            int digit = s.charAt(i)-'0';
-
-            if(res>(Integer.MAX_VALUE/10) || (res == (Integer.MIN_VALUE/10) && digit>7)){
-                return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-            }
-
-            res = (res*10) + digit;
-            if(res>Integer.MAX_VALUE){
-                res -= 1;
-            }else if(res < Integer.MIN_VALUE){
-                res += 1;
-            }
-            ++i;
-        }
-        return isNegative ? -res: res;
+            
+                s = s.trim();
+                
+                if (s.length() == 0) {
+                    return 0;
+                }
+                
+                int index = 0;
+                int sign = 1;
+                int result = 0;
+                int maxInt = Integer.MAX_VALUE;
+                int minInt = Integer.MIN_VALUE;
+                
+                if (s.charAt(index) == '+') {
+                    sign = 1;
+                    index++;
+                } else if (s.charAt(index) == '-') {
+                    sign = -1;
+                    index++;
+                }
+                
+                while (index < s.length()) {
+                    char c = s.charAt(index);
+                    if (c < '0' || c > '9') {
+                        break;
+                    }
+                    
+                    int digit = c - '0';
+                    
+                    if (result > (maxInt - digit) / 10) {
+                        return (sign == 1) ? maxInt : minInt;
+                    }
+                    
+                    result = result * 10 + digit;
+                    index++;
+                }
+                
+                return sign * result;
     }
 
     public static void main(String[] args) {
