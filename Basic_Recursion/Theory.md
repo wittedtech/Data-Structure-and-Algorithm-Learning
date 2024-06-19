@@ -1,5 +1,5 @@
 # Definition: 
-- Recursion : When a Function calls itself until a specified condition is met.
+- Recursion : When a Function calls itself until a specified condition(Base Case) is met.
   
 ## Types - How Recursion could be achieved.
 
